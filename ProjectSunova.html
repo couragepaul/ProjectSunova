@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Project Sunova</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/jquery-3.1.1.min.js"></script> 
+	<script src="js/angular.min.js"></script>
+	<script src="js/myApp.js"></script>
+</head>
+<body>
+
+	<h1 id="title">My Finished Product</h1> 
+	
+	 
+	<div ng-controller="myController">	
+	<br/>	
+	<fieldset>		
+			Advanced Search:
+			<hr>
+			<label>Any:<input ng-model="search.$"></label><br><br>
+			<label>Name:<input ng-model="search.name"></label>
+			<label>Color:<input ng-model="search.color"></label>
+			<label>Model:<input ng-model="search.model"></label>
+			<label>Mileage:<input ng-model="search.mileage"></label>
+			<label>Engine:<input ng-model="search.engine"></label><br>
+
+			<hr/>
+			<button ng-click="propertyName = null; reverse = false">Clear Sorting</button>
+			
+			<table id="searchObjResults" >
+				<hr>
+				<col align="left">
+ 			    <col align="left">
+ 			    <col align="right">
+				<tr>
+					<th>
+						<button ng-click="sortBy('name')">Name</button>
+						<span class="sortorder" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+					</th>
+					<th>
+						<button ng-click="sortBy('color')">Color</button>
+						<span class="sortorder" ng-show="propertyName === 'color'" ng-class="{reverse: reverse}"></span>
+					</th>
+					<th>
+						<button ng-click="sortBy('model')">Model</button>
+						<span class="sortorder" ng-show="propertyName === 'model'" ng-class="{reverse: reverse}"></span>
+					</th>
+					<th>
+						<button ng-click="sortBy('mileage')">Mileage</button>
+						<span class="sortorder" ng-show="propertyName === 'mileage'" ng-class="{reverse: reverse}"></span>
+					</th>
+					<th>
+						<button ng-click="sortBy('engine')">Engine</button>
+						<span class="sortorder" ng-show="propertyName === 'engine'" ng-class="{reverse: reverse}"></span>
+					</th>
+				</tr>
+				<tr ng-repeat="custObj in dataArray | filter:search | orderBy:propertyName:reverse" >
+					<td>{{custObj.name}}</td>
+					<td>{{custObj.color}}</td>
+					<td>{{custObj.model}}</td>
+					<td>{{custObj.mileage}}</td>
+					<td>{{custObj.engine}}</td>					
+				</tr>				
+			</table>
+			<br/>
+			
+		
+	</fieldset>		
+		<br/>
+		
+		
+	</div>	
+</body>
+</html>
